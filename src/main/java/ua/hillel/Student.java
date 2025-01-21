@@ -16,11 +16,12 @@ public class Student {
     private String lastName;
     private String email;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Homework> homeworks = new HashSet<>();
 
     public Student() {
     }
+
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -88,7 +89,7 @@ public class Student {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", homeworks=" + homeworks.size() +
+                ", homeworks=" + (homeworks != null ? homeworks.size() : null) +
                 '}';
     }
 }

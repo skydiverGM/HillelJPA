@@ -20,7 +20,8 @@ public class Homework {
     @JoinColumn(name = "student_id")
     private Student student;
 
-    public Homework() {}
+    public Homework() {
+    }
 
     public Homework(String description, LocalDate deadline, Student student) {
         this.description = description;
@@ -68,12 +69,12 @@ public class Homework {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Homework homework = (Homework) o;
-        return Objects.equals(id, homework.id);
+        return Objects.equals(id, homework.id) && Objects.equals(description, homework.description) && Objects.equals(deadline, homework.deadline) && Objects.equals(student, homework.student);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hash(id, description, deadline, student);
     }
 
     @Override

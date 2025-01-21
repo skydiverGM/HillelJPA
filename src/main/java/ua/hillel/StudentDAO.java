@@ -12,15 +12,14 @@ public class StudentDAO extends AbstractGenericDAO<Student, Long> {
         return Student.class;
     }
 
-    public Optional<Student> findByEmail(String email) {
+    public Student findByEmail(String email) {
         EntityManager em = getEntityManager();
         try {
-            return Optional.of(
-                    em.createQuery("SELECT s FROM Student s WHERE s.email = :email", Student.class)
+            return em.createQuery("SELECT s FROM Student s WHERE s.email = :email", Student.class)
                             .setParameter("email", email)
-                            .getSingleResult());
+                            .getSingleResult();
         } catch (NoResultException e) {
-            return Optional.empty();
+            return null;
         } finally {
             em.close();
         }

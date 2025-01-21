@@ -14,7 +14,7 @@ public final class JpaUtil {
         return ENTITY_MANAGER_FACTORY.createEntityManager();
     }
 
-    public static void closeEntityManager(EntityManagerFactory entityManagerFactory) {
+    public static void closeEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
         if (entityManagerFactory.isOpen()){
             entityManagerFactory.close();
         }
